@@ -1,6 +1,6 @@
-Vcc = float(input("Enter Vcc (Collector supply voltage in volts): "))
+Vcc = float(input("Enter Vcc (voltage in volts): "))
 beta = float(input("Enter beta (current gain of the BJT): "))
-IB = float(input("Enter IB (Base current in amperes): "))
+IB = float(input("Enter IB (in amperes): "))
 
 # Fixed Bias Configuration
 IB_fixed = IB
