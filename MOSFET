@@ -1,0 +1,39 @@
+# Input values from the user
+Vdd = float(input("Enter Vdd (Drain supply voltage in volts): "))
+Vds = float(input("Enter Vds (Drain-Source voltage in volts): "))
+
+# Depletion-type MOSFET parameters (you can change these if needed)
+Vth = -2.0  # Threshold voltage (typically negative for depletion-type)
+Id = 2.0e-3  # Desired drain current (in amperes)
+
+# Fixed Bias Configuration
+# Calculate Vgs for fixed bias (Vgs = Vth for depletion-type)
+Vgs_fixed = Vth
+Vgd_fixed = Vgs_fixed - Vds
+if Vgd_fixed < 0:
+    Id_fixed = 0
+else:
+    Id_fixed = Id
+
+# Voltage Divider Bias Configuration
+R1 = float(input("Enter R1 (Resistor R1 in ohms): "))
+R2 = float(input("Enter R2 (Resistor R2 in ohms): "))
+
+# Calculate Vgs for voltage divider bias
+Vgs_vd = Vdd * R2 / (R1 + R2)
+Vgd_vd = Vgs_vd - Vds
+if Vgd_vd < 0:
+    Id_vd = 0
+else:
+    Id_vd = Id
+
+# Display results
+print("\nFixed Bias Configuration:")
+print(f"Vgs_fixed = {Vgs_fixed:.4f} V")
+print(f"Vgd_fixed = {Vgd_fixed:.4f} V")
+print(f"Id_fixed = {Id_fixed:.4e} A")
+
+print("\nVoltage Divider Bias Configuration:")
+print(f"Vgs_vd = {Vgs_vd:.4f} V")
+print(f"Vgd_vd = {Vgd_vd:.4f} V")
+print(f"Id_vd = {Id_vd:.4e} A")
