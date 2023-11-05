@@ -1,0 +1,42 @@
+Vcc = float(input("Enter Vcc (Collector supply voltage in volts): "))
+beta = float(input("Enter beta (current gain of the BJT): "))
+IB = float(input("Enter IB (Base current in amperes): "))
+
+# Fixed Bias Configuration
+IB_fixed = IB
+IC_fixed = beta * IB_fixed
+IE_fixed = IC_fixed
+VCE_fixed = Vcc - IC_fixed
+
+# Emitter Feedback Bias Configuration
+Rb_ef = float(input("Enter Rb (Base resistor for emitter feedback in ohms): "))
+IB_ef = (Vcc - 0.7) / (Rb_ef + (1 + beta) * Rb_ef)
+IC_ef = beta * IB_ef
+IE_ef = IC_ef
+VCE_ef = Vcc - IC_ef
+
+# Collector Feedback Bias Configuration
+Rb_cf = float(input("Enter Rb (Base resistor for collector feedback in ohms): "))
+IB_cf = (Vcc - 0.7) / (Rb_cf + Rb_cf / (1 + beta))
+IC_cf = beta * IB_cf
+IE_cf = IC_cf
+VCE_cf = Vcc - IC_cf
+
+# Display results
+print("\nFixed Bias Configuration:")
+print(f"IB_fixed = {IB_fixed:.4f} A")
+print(f"IC_fixed = {IC_fixed:.4f} A")
+print(f"IE_fixed = {IE_fixed:.4f} A")
+print(f"VCE_fixed = {VCE_fixed:.4f} V")
+
+print("\nEmitter Feedback Bias Configuration:")
+print(f"IB_ef = {IB_ef:.4f} A")
+print(f"IC_ef = {IC_ef:.4f} A")
+print(f"IE_ef = {IE_ef:.4f} A")
+print(f"VCE_ef = {VCE_ef:.4f} V")
+
+print("\nCollector Feedback Bias Configuration:")
+print(f"IB_cf = {IB_cf:.4f} A")
+print(f"IC_cf = {IC_cf:.4f} A")
+print(f"IE_cf = {IE_cf:.4f} A")
+print(f"VCE_cf = {VCE_cf:.4f} V")
